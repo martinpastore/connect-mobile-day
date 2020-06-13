@@ -1,0 +1,22 @@
+.main__content {
+  text-align: center;
+}
+
+.main__content-title {
+  text-align: center;
+  padding: 1rem 0 2rem 0;
+}
+
+.main__content-list {
+  margin: 1rem 0;
+}
+
+.main__content-actions {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.modal {
+  text-align: center;
+}

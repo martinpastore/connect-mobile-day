@@ -1,0 +1,9 @@
+.selections {
+  display: flex;
+}
+
+.selection {
+  padding: 1rem 0;
+  font-size: 48px;
+  text-align: center;
+}
