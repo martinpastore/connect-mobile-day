@@ -32,8 +32,6 @@ import Quiz from "./pages/Quiz";
 
 initApp();
 
-console.log(process.env);
-
 const App: React.FC = () => (
   <StoreProvider store={store}>
     <IonApp>

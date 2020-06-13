@@ -7,6 +7,8 @@ import {
   IonToolbar,
   IonLoading,
   IonToast,
+  IonItem,
+  IonLabel,
 } from "@ionic/react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.css";
@@ -31,15 +33,25 @@ const Quiz: React.FunctionComponent<Props> = ({ history }) => {
         ).length === 0
       );
     }
+    return true;
   };
 
   const valorate = (value: number) => {
     if (!canValidate()) return null;
 
-    quiz.valorations.push({
-      email: user.email,
-      valoration: value,
-    });
+    if (quiz && quiz.valorations) {
+      quiz.valorations.push({
+        email: user.email,
+        valoration: value,
+      });
+    } else {
+      quiz.valorations = [
+        {
+          email: user.email,
+          valoration: value,
+        },
+      ];
+    }
 
     dispatch(
       updateQuizes({
@@ -69,22 +81,27 @@ const Quiz: React.FunctionComponent<Props> = ({ history }) => {
         <IonLoading isOpen={true} />
       ) : (
         <IonContent className="selections">
-          <IonTitle>Qué te parecio?</IonTitle>
-          <IonTitle onClick={() => valorate(5)} className="selection">
-            😃
-          </IonTitle>
-          <IonTitle onClick={() => valorate(4)} className="selection">
-            🙂
-          </IonTitle>
-          <IonTitle onClick={() => valorate(3)} className="selection">
-            😐
-          </IonTitle>
-          <IonTitle onClick={() => valorate(2)} className="selection">
-            🙁
-          </IonTitle>
-          <IonTitle onClick={() => valorate(1)} className="selection">
-            😫
-          </IonTitle>
+          <IonTitle className="title">Qué te parecio?</IonTitle>
+          <IonItem onClick={() => valorate(5)}>
+            <IonTitle className="selection">😃</IonTitle>
+            <IonLabel>Me encantó</IonLabel>
+          </IonItem>
+          <IonItem onClick={() => valorate(4)}>
+            <IonTitle className="selection">🙂</IonTitle>
+            <IonLabel>Estuvo bueno</IonLabel>
+          </IonItem>
+          <IonItem onClick={() => valorate(3)}>
+            <IonTitle className="selection">😐</IonTitle>
+            <IonLabel>Meh</IonLabel>
+          </IonItem>
+          <IonItem onClick={() => valorate(2)}>
+            <IonTitle className="selection">🙁</IonTitle>
+            <IonLabel>Mas o menos</IonLabel>
+          </IonItem>
+          <IonItem onClick={() => valorate(1)}>
+            <IonTitle className="selection">😫</IonTitle>
+            <IonLabel>Malazo</IonLabel>
+          </IonItem>
         </IonContent>
       )}
 
